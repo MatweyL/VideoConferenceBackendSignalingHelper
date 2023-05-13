@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 function makeVideoElementCustom(element_id, display_name) {
     let vid = document.createElement("video");
     vid.id = "vid_" + element_id;
+    vid.className = "video";
     vid.autoplay = true;
     return vid;
 }
 
 function addVideoElement(element_id, display_name) {
     document.getElementById("video_grid").appendChild(makeVideoElementCustom(element_id, display_name));
-    checkVideoLayout();
 }
 function removeVideoElement(element_id) {
     let v = getVideoObj(element_id);

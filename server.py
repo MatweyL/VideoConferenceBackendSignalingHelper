@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, session
 from flask_socketio import SocketIO, emit, join_room
 import platform
+from engineio.payload import Payload
 
+Payload.max_decode_packets = 100
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "wubba lubba dub dub"
 

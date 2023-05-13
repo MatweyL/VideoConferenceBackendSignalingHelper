@@ -45,10 +45,9 @@
 </head>
 
 <body>
-    <div id="video_grid" class="video-grid"></div>
-    <video id="local_vid" autoplay muted></video>
-
-    <script src="{{url_for('static', filename='video-manager.js')}}"></script>
+    <div id="video_grid" class="video-grid">
+        <video id="local_vid" class="video" autoplay muted></video>
+    </div>
     <script src="{{url_for('static', filename='chatroom_ui.js')}}"></script>
     <script src="{{url_for('static', filename='chatroom_networking.js')}}"></script>
 </body>

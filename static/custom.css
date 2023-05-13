@@ -1,21 +1,35 @@
-html,
+
 body {
   margin: 0;
-  height: 100%;
-  overflow: hidden
+  padding: 0;
+}
+
+.video-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    min-height: 100vh;
+    background-color: #2A2A2A;
+}
+
+.video-wrapper {
+    position: relative;
+}
+
+.video-username {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.video {
+    width: auto;
+    height: 344px;
+    margin: 5px;
 }
 
 #local_vid {
-  height: 240px;
-  width: 150px;
-  object-fit: cover;
-  z-index: 100;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-.video_grid {
-  z-index: 1;
-  position: relative;
+    border: 1px solid green;
 }
