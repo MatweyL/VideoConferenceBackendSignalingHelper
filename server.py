@@ -9,6 +9,7 @@ app.config['SECRET_KEY'] = "wubba lubba dub dub"
 
 socketio = SocketIO(app)
 
+
 users_in_room = {}
 rooms_sid = {}
 names_sid = {}
@@ -17,8 +18,8 @@ names_sid = {}
 @app.route("/join", methods=["GET"])
 def join():
     display_name = request.args.get('display_name')
-    mute_audio = request.args.get('mute_audio') # 1 or 0
-    mute_video = request.args.get('mute_video') # 1 or 0
+    mute_audio = request.args.get('mute_audio')  # 1 or 0
+    mute_video = request.args.get('mute_video')  # 1 or 0
     room_id = request.args.get('room_id')
     session[room_id] = {"name": display_name,
                         "mute_audio": mute_audio, "mute_video": mute_video}

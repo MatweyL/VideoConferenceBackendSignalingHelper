@@ -14,22 +14,26 @@ body {
 }
 
 .video-wrapper {
-    position: relative;
+    text-align: center;
+    margin: 5px;
 }
 
 .video-username {
-    position: absolute;
-    top: 0;
-    right: 0;
-
+    color: white;
 }
 
 .video {
     width: auto;
     height: 344px;
-    margin: 5px;
 }
 
 #local_vid {
     border: 1px solid green;
+}
+
+
+.conference-actions {
+    background-color: #2A2A2A;
+    border: 1px dashed green;
+
 }

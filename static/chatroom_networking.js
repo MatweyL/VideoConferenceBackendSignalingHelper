@@ -236,6 +236,8 @@ function handleTrackEvent(event, peer_id)
     
     if(event.streams)
     {
-        getVideoObj(peer_id).srcObject = event.streams[0];
+        let peerVideoObj = getVideoObj(peer_id);
+        console.log("VIDEO OBJ ", peerVideoObj);
+        peerVideoObj.srcObject = event.streams[0];
     }
 }
