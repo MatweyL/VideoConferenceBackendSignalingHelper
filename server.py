@@ -20,7 +20,7 @@ def join():
     mute_audio = request.args.get('mute_audio') # 1 or 0
     mute_video = request.args.get('mute_video') # 1 or 0
     video_token = request.args.get("video_token")
-    is_creator = request.args.get("is_creator")
+    is_creator = request.args.get("is_creator") == "true"
     print(f"USER IS CREATOR: {is_creator}")
     room_id = request.args.get('room_id')
     session[room_id] = {"name": display_name,
