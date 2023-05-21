@@ -106,7 +106,6 @@
     <script>
         $('#VIDEO_BUTTON').click(function(){
               videoMuted = !videoMuted;
-              setVideoMuteState(videoMuted);
               let activeClass = "btn-info";
               let inactiveClass = "btn-secondary";
               if (videoMuted) {
@@ -118,11 +117,11 @@
                 $(this).addClass(activeClass);
                 $(this).text("Включено");
               }
+              setVideoMuteState(videoMuted);
 
         });
         $('#AUDIO_BUTTON').click(function(){
               audioMuted = !audioMuted;
-              setAudioMuteState(audioMuted);
               let activeClass = "btn-info";
               let inactiveClass = "btn-secondary";
               if (audioMuted) {
@@ -134,6 +133,7 @@
                 $(this).addClass(activeClass);
                 $(this).text("Включено");
               }
+              setAudioMuteState(audioMuted);
         });
         $('#CONFERENCE_QUIT_BUTTON').click(function(){
               window.location.replace((frontendURL + "/conferences"));
@@ -149,7 +149,6 @@
         });
         $('#CONFERENCE_ACCESS_BUTTON').click(function(){
               isConferenceBlocked = !isConferenceBlocked;
-              changeConferenceJoinAccess(myRoomID, video_token, isConferenceBlocked);
               let activeClass = "btn-warning";
               let inactiveClass = "btn-info";
              if (isConferenceBlocked) {
@@ -161,6 +160,7 @@
                 $(this).addClass(activeClass);
                 $(this).text("Заблокировать");
               }
+              changeConferenceJoinAccess(myRoomID, video_token, isConferenceBlocked);
         });
     </script>
 </body>
