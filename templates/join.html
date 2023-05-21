@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!-- jQuery UI -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
         integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
@@ -36,6 +35,8 @@
         var myName = "{{display_name}}";
         var audioMuted = "{{mute_audio}}" == "1";
         var videoMuted = "{{mute_video}}" == "1";
+        var isConferenceBlocked = false;
+        var video_token = "{{video_token}}";
         console.log(">> {{mute_audio}}, {{mute_video}}", audioMuted, videoMuted);
     </script>
 
@@ -58,27 +59,30 @@
                    <div class="text-white text-center">Параметры медиа</div>
                    <div class="d-flex justify-content-between p-3">
                        <span class="text-white mt-1">Аудио</span>
-                       <button type="button" class="btn btn-secondary btn-sm">Выключено</button>
+                       <button id="AUDIO_BUTTON" type="button" class="btn btn-info btn-sm">Включено</button>
                    </div>
                    <div class="d-flex justify-content-between p-3">
                        <span class="text-white mt-1">Видео</span>
-                       <button type="button" class="btn btn-info btn-sm" onclick="setVideoMuteState(true)">Включено</button>
+                       <button id="VIDEO_BUTTON" type="button" class="btn btn-info btn-sm">Включено</button>
                    </div>
                </div>
                <div class="mt-3">
                    <div class="text-white text-center">Параметры конференции</div>
                    <div class="d-flex justify-content-between mt-3">
-                        <button type="button" class="btn btn-warning btn-sm col-12">Заблокировать</button>
+                        <button id="CONFERENCE_ACCESS_BUTTON" type="button" class="btn btn-warning btn-sm col-12">Заблокировать</button>
                    </div>
                    <div class="d-flex justify-content-between mt-3">
-                        <button type="button" class="btn btn-danger btn-sm col-12">Завершить</button>
+                      <button id="CONFERENCE_QUIT_BUTTON" type="button" class="btn btn-info btn-sm col-12">Отключиться</button>
+                  </div>
+                   <div class="d-flex justify-content-between mt-3">
+                        <button id="CONFERENCE_FINISH_BUTTON" type="button" class="btn btn-danger btn-sm col-12">Завершить</button>
                    </div>
                </div>
                <div class="mt-3">
                    <div class="text-white text-center">Участники</div>
-                   <div class="d-flex justify-content-between p-3">
-                       <span class="text-white mt-1">user</span>
-                   </div>
+<!--                   <div class="d-flex justify-content-between p-3">-->
+<!--                       <span class="text-white mt-1">user</span>-->
+<!--                   </div>-->
 <!--                   <div class="d-flex justify-content-between p-3">-->
 <!--                       <span class="text-white mt-1">user2</span>-->
 <!--                       <button type="button" class="btn btn-danger btn-sm">Исключить</button>-->
@@ -92,6 +96,56 @@
     </div>
     <script src="{{url_for('static', filename='chatroom_ui.js')}}"></script>
     <script src="{{url_for('static', filename='chatroom_networking.js')}}"></script>
+    <script>
+        $('#VIDEO_BUTTON').click(function(){
+              videoMuted = !videoMuted;
+              setVideoMuteState(videoMuted);
+              let activeClass = "btn-info";
+              let inactiveClass = "btn-secondary";
+              if (videoMuted) {
+                $(this).removeClass(activeClass);
+                $(this).addClass(inactiveClass);
+                $(this).text("Выключено");
+              } else {
+                $(this).removeClass(inactiveClass);
+                $(this).addClass(activeClass);
+                $(this).text("Включено");
+              }
+
+        });
+        $('#AUDIO_BUTTON').click(function(){
+              audioMuted = !audioMuted;
+              setAudioMuteState(audioMuted);
+              let activeClass = "btn-info";
+              let inactiveClass = "btn-secondary";
+              if (audioMuted) {
+                $(this).removeClass(activeClass);
+                $(this).addClass(inactiveClass);
+                $(this).text("Выключено");
+              } else {
+                $(this).removeClass(inactiveClass);
+                $(this).addClass(activeClass);
+                $(this).text("Включено");
+              }
+        });
+        $('#CONFERENCE_FINISH_BUTTON').click(function(){
+              window.location.replace((frontendURL + "/conferences"));
+        });
+        $('#CONFERENCE_ACCESS_BUTTON').click(function(){
+            isConferenceBlocked = !isConferenceBlocked;
+              let activeClass = "btn-warning";
+              let inactiveClass = "btn-info";
+             if (isConferenceBlocked) {
+                $(this).removeClass(activeClass);
+                $(this).addClass(inactiveClass);
+                $(this).text("Разблокировать");
+              } else {
+                $(this).removeClass(inactiveClass);
+                $(this).addClass(activeClass);
+                $(this).text("Заблокировать");
+              }
+        });
+    </script>
 </body>
 
 </html>

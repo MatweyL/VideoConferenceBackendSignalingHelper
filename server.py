@@ -19,10 +19,11 @@ def join():
     display_name = request.args.get('display_name')
     mute_audio = request.args.get('mute_audio') # 1 or 0
     mute_video = request.args.get('mute_video') # 1 or 0
+    video_token = request.args.get("video_token")
     room_id = request.args.get('room_id')
     session[room_id] = {"name": display_name,
                         "mute_audio": mute_audio, "mute_video": mute_video}
-    return render_template("join.html", room_id=room_id, display_name=session[room_id]["name"], mute_audio=session[room_id]["mute_audio"], mute_video=session[room_id]["mute_video"])
+    return render_template("join.html", video_token=video_token, room_id=room_id, display_name=session[room_id]["name"], mute_audio=session[room_id]["mute_audio"], mute_video=session[room_id]["mute_video"])
 
 
 @sio.on("connect")
@@ -119,4 +120,4 @@ def on_data(data):
 
 
 if __name__ == "__main__":
-    sio.run(app, host="0.0.0.0", port=5001)
+    sio.run(app, host="localhost", port=5001)
