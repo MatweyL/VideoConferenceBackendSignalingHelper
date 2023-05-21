@@ -1,5 +1,4 @@
 var myVideo;
-let usersCount = 1;
 
 document.addEventListener("DOMContentLoaded", (event) => {
     myVideo = document.getElementById("local_vid");
@@ -29,8 +28,7 @@ function makeVideoElementCustom(element_id, display_name) {
     let vidWrapper = document.createElement("div");
     vidWrapper.className = "video-wrapper";
     let vidUsername = document.createElement("div");
-    vidUsername.innerText = "user" + usersCount;
-    usersCount += 1;
+    vidUsername.innerText = display_name;
     vidUsername.className = "video-username";
     vidWrapper.id = "vid_" + element_id;
     vid.className = "video";
