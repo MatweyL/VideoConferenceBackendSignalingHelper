@@ -4,8 +4,7 @@ var _peer_list = {};
 // socketio 
 var protocol = window.location.protocol;
 var socket = io(protocol + '//' + document.domain + ':' + location.port, {autoConnect: true});
-var frontendURL = "http://localhost:3000"
-var backendURL = "http://localhost:5000"
+
 document.addEventListener("DOMContentLoaded", (event)=>{
     startCamera();
 });
