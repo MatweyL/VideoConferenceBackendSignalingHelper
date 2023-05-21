@@ -122,4 +122,5 @@ def on_data(data):
 
 
 if __name__ == "__main__":
-    sio.run(app, host="0.0.0.0", port=5001)
+
+    sio.run(app, host="0.0.0.0", port=5001, ssl_context=("cert.pem", "key.pem"))
