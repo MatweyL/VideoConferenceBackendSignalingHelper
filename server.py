@@ -1,8 +1,6 @@
 from engineio.payload import Payload
 from flask import Flask, render_template, request, session
 from flask_socketio import SocketIO, emit, join_room, leave_room
-import platform
-
 
 Payload.max_decode_packets = 100
 app = Flask(__name__)
@@ -120,5 +118,5 @@ def on_data(data):
     sio.emit('data', data, room=target_sid)
 
 
-if any(platform.win32_ver()):
-    sio.run(app, port=5001, debug=True)
+if __name__ == "__main__":
+    sio.run(app, host="0.0.0.0", port=5001)
