@@ -71,9 +71,11 @@ function closeConnection(peer_id)
 {
     if(peer_id in _peer_list)
     {
-        _peer_list[peer_id].onicecandidate = null;
-        _peer_list[peer_id].ontrack = null;
-        _peer_list[peer_id].onnegotiationneeded = null;
+        if (_peer_list[peer_id]) {
+            _peer_list[peer_id].onicecandidate = null;
+            _peer_list[peer_id].ontrack = null;
+            _peer_list[peer_id].onnegotiationneeded = null;
+        }
 
         delete _peer_list[peer_id]; // remove user from user list
     }

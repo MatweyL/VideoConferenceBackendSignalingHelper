@@ -41,6 +41,7 @@ function makeVideoElementCustom(element_id, display_name) {
 
 function addVideoElement(element_id, display_name) {
     document.getElementById("video_grid").appendChild(makeVideoElementCustom(element_id, display_name));
+    addUserToParticipants(element_id, display_name);
 }
 function removeVideoElement(element_id) {
     let videoWrapper = getVideoWrapper(element_id);
@@ -52,6 +53,7 @@ function removeVideoElement(element_id) {
     v.removeAttribute("src");
 
     document.getElementById("vid_" + element_id).remove();
+    removeUserToParticipants(element_id);
 }
 
 function getVideoWrapper(element_id) {
@@ -71,4 +73,21 @@ function setAudioMuteState(flag) {
 function setVideoMuteState(flag) {
     let local_stream = myVideo.srcObject;
     local_stream.getVideoTracks().forEach((track) => { track.enabled = !flag; });
+}
+
+
+function addUserToParticipants(element_id, display_name) {
+    let participantContainer = document.createElement("div");
+    participantContainer.id = "participant_" + element_id;
+    participantContainer.className = "d-flex justify-content-between p-3";
+    let participantName = document.createElement("span")
+    participantName.innerText = display_name;
+    participantName.className = "text-white mt-1";
+    participantContainer.appendChild(participantName);
+    document.getElementById("participants").appendChild(participantContainer);
+}
+
+function removeUserToParticipants(element_id) {
+    let participantContainer = document.getElementById("participant_" + element_id);
+    participantContainer.remove();
 }

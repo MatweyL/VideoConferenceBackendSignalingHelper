@@ -27,6 +27,24 @@ body {
     height: 344px;
 }
 
+
+@media (min-width: 600px) and (max-width: 1000px) {
+    .video {
+        width: auto;
+        height: 280px;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    .video {
+        width: auto;
+        height: 140px;
+    }
+}
+
+
 #local_vid {
     border: 1px solid green;
 }

@@ -1,3 +1,5 @@
+import os
+
 from engineio.payload import Payload
 from flask import Flask, render_template, request, session
 from flask_socketio import SocketIO, emit, join_room, leave_room
@@ -122,5 +124,9 @@ def on_data(data):
 
 
 if __name__ == "__main__":
-
-    sio.run(app, host="0.0.0.0", port=5001, ssl_context=("cert.pem", "key.pem"))
+    ssl_context = None
+    if "cert.pem" in os.listdir() and "key.pem" in os.listdir():
+        sio.run(app, host="0.0.0.0", port=5001, ssl_context=("cert.pem", "key.pem"))
+    else:
+        print("no ssl context found")
+        sio.run(app, host="0.0.0.0", port=5001)
